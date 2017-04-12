@@ -14,7 +14,7 @@ MapWrapper.prototype = {
       map: this.googleMap
     })
   },
-///////////   COMMENTED OUT AS MARKERS WERE GETTING ANNOYING!
+
   addClickEvent: function(){
     google.maps.event.addListener(this.googleMap, 'dblclick', function(event){
       console.log(event)
@@ -38,11 +38,24 @@ MapWrapper.prototype = {
            var marker = new google.maps.Marker({
              position: {lat: 18.536208, lng: 73.893975},
              map: this.googleMap,
-             title: 'Koregaon Park'
+             title: 'Koregaon Park',
+             animation: google.maps.Animation.BOUNCE
+
            });
            marker.addListener('click', function() {
              infowindow.open(this.googleMap, marker);
            });
-  }
+  },
+  findLocation: function(){
+    navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+                this.reCenter(pos)
+  }.bind(this))
+
+
 }
 
+}

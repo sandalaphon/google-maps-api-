@@ -5,16 +5,22 @@ var initialise = function(){
     mainMap = new MapWrapper(container, center, 12);
   mainMap.addMarker(center)
   mainMap.addClickEvent()
-  var button = document.querySelector('button');
+  var button1 = document.querySelector('#k-Park');
   // button.onclick = handleClick(mainMap)
   // this executes without a click so the map immediately recenters on San Franscisco...must be a way to do this without making mainMap a global variable?
-  button.onclick = handleClick
+  button1.onclick = handlePuneClick
+  var button2 = document.querySelector('#find-location');
+  button2.onclick = handleWhereAmIClick
   mainMap.koregaonParkInfo()
 }
 
-var handleClick =function(){
+var handlePuneClick =function(){
   var coords = {lat: 18.536208, lng: 73.893975}
   mainMap.reCenter(coords)//goes to MapWrapper.proto
+}
+
+var handleWhereAmIClick = function(){
+  mainMap.findLocation()
 }
 
 
