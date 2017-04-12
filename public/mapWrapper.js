@@ -53,6 +53,19 @@ MapWrapper.prototype = {
                   lng: position.coords.longitude
                 };
                 this.reCenter(pos)
+                this.googleMap.setZoom(16)
+                var marker = new google.maps.Marker({
+                  position: pos,
+                  map: this.googleMap,
+                  title: 'You are here',
+                  animation: google.maps.Animation.BOUNCE
+
+                });
+                var infowindow = new google.maps.InfoWindow({
+                         content: "You are here"
+                       });
+                  infowindow.open(this.googleMap, marker);
+                
   }.bind(this))
 
 
